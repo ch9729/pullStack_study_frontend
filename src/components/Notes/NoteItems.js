@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import moment from "moment";
 
+// 각각의 노트들을 표시함(글 내용, 글고유값, 작성일)
 const NoteItems = ({ parsedContent, id, createdAt }) => {
   const formattedDate = moment(createdAt).format("D MMMM YYYY");
   return (
