@@ -6,8 +6,9 @@ import { FiFilePlus } from "react-icons/fi";
 import { Blocks } from "react-loader-spinner";
 import Errors from "../Errors";
 
+// 유저의 모든 노트들을 표시
 const AllNotes = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([]); // 노트배열
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -23,18 +24,18 @@ const AllNotes = () => {
       setNotes(parsedNotes);
     } catch (error) {
       setError(error.response.data.message);
-      console.error("Error fetching notes", error);
+      console.error("노트 가져오기 에러", error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    //calling the function here to fetch all notes
+    // 유저의 모든 노트 가져오기(처음 한번)
     fetchNotes();
   }, []);
 
-  //to show an errors
+  // 에러 시 표시
   if (error) {
     return <Errors message={error} />;
   }
