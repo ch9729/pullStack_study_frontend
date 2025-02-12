@@ -51,21 +51,22 @@ const Login = () => {
     navigate("/notes");
   };
 
-  //function for handle login with credentials
+  // 로그인 함수
   const onLoginHandler = async (data) => {
     try {
-      setLoading(true);
+      setLoading(true); // 로딩시작
       const response = await api.post("/auth/public/signin", data);
 
-      //showing success message with react hot toast
-      toast.success("Login Successful");
+      toast.success("로그인 성공");
 
-      //reset the input field by using reset() function provided by react hook form after submission
+      // 입력창 리셋
       reset();
 
       if (response.status === 200 && response.data.jwtToken) {
         setJwtToken(response.data.jwtToken);
         const decodedToken = jwtDecode(response.data.jwtToken);
+
+        console.log(decodedToken); // 토큰해석
         handleSuccessfulLogin(response.data.jwtToken, decodedToken);
       } else {
         toast.error(
@@ -81,7 +82,7 @@ const Login = () => {
     }
   };
 
-  //if there is token  exist navigate  the user to the home page if he tried to access the login page
+  // 토큰이 있으면 홈페이지로 간다(로그인 필요없다)
   useEffect(() => {
     if (token) navigate("/");
   }, [navigate, token]);
