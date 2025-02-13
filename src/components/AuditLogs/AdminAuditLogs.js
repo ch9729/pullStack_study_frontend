@@ -144,7 +144,7 @@ const AdminAuditLogs = () => {
     //format the time bu using moment npm package
 
     const formattedDate = moment(item.timestamp).format(
-      "MMMM DD, YYYY, hh:mm A"
+      "YYYY/MM/DD hh:mm:ss a"
     );
 
     //set the data for each rows in the table according to the field name in columns
